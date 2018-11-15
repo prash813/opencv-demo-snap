@@ -91,7 +91,6 @@ parts:
       - libcairo2
       - libcairo-gobject2
       - libcapnp-0.5.3
-      - libcrystalhd3
       - libdatrie1
       - libdc1394-22
       - libepoxy0
@@ -118,7 +117,6 @@ parts:
       - libmirprotobuf3
       - libmodplug1
       - libmp3lame0
-      - libnuma1
       - libogg0
       - libopencore-amrnb0
       - libopencore-amrwb0
@@ -183,3 +181,5 @@ parts:
       - libxvidcore4
       - libzvbi0
       - python-numpy
+      - to amd64: [ "libcrystalhd3:amd64", "libnuma1:amd64" ]
+      - to i386: [ "libcrystalhd3:i386", "libnuma1:i386" ]
