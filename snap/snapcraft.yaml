@@ -1,13 +1,13 @@
-name: opencv-demo
+name: opencv-demo-ogra
 version: '0.1'
 summary: A little face recognition test
 description: |
   A simple OpenCV demo snap, shipping with three python based demos
-    - opencv-demo.eyedetect - demo eye detection
-    - opencv-demo.facedetect - demo face detection
-    - opencv-test.vidcapture - just a simple video capture demo
+    - opencv-demo-ogra.eyedetect - demo eye detection
+    - opencv-demo-ogra.facedetect - demo face detection
+    - opencv-demo-ogra.vidcapture - just a simple video capture demo
   please make sure to run
-    sudo snap connect opencv-demo:camera
+    sudo snap connect opencv-demo-ogra:camera
   to allow the demo to access your webcam
 
 grade: stable
