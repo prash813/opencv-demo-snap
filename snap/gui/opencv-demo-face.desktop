@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=OpenCV Face Detection Demo
+Comment=Demo of OpenCV Face Detection
+Icon=${SNAP}/meta/gui/icon.png
+Exec=opencv-demo.facedetect
+Terminal=false
+Categories=Utility;
