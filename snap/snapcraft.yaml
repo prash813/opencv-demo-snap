@@ -14,36 +14,62 @@ grade: stable
 confinement: strict
 
 apps:
+  daemon:
+    command: desktop-launch xwayland-kiosk-launch eyedetect.py
+    daemon: simple
+    environment:
+      LD_LIBRARY_PATH: $SNAP/usr/lib/atlas-base/atlas:$LD_LIBRARY_PATH
+      XWAYLAND_FULLSCREEN_WINDOW_HINT: title="opencv-demo"
+    slots: [ x11 ]
+    plugs:
+      - camera
+      - home
+      - mir
+      - network
+      - network-bind
+      - opengl
+      - wayland
+      - x11-plug
   vidcapture:
     command: vidcapture.py
     environment:
       LD_LIBRARY_PATH: $SNAP/usr/lib/atlas-base/atlas:$LD_LIBRARY_PATH
+      XWAYLAND_FULLSCREEN_WINDOW_HINT: title="opencv-demo"
+    slots: [ x11 ]
     plugs:
       - camera
       - home
       - opengl
-      - desktop
-      - x11
+      - wayland
+      - x11-plug
   facedetect:
     command: facedetect.py
     environment:
       LD_LIBRARY_PATH: $SNAP/usr/lib/atlas-base/atlas:$LD_LIBRARY_PATH
+      XWAYLAND_FULLSCREEN_WINDOW_HINT: title="opencv-demo"
+    slots: [ x11 ]
     plugs:
       - camera
       - home
       - opengl
-      - desktop
-      - x11
+      - wayland
+      - x11-plug
   eyedetect:
     command: eyedetect.py
     environment:
       LD_LIBRARY_PATH: $SNAP/usr/lib/atlas-base/atlas:$LD_LIBRARY_PATH
+      XWAYLAND_FULLSCREEN_WINDOW_HINT: title="opencv-demo"
+    slots: [ x11 ]
     plugs:
       - camera
       - home
       - opengl
-      - desktop
-      - x11
+      - wayland
+      - x11-plug
+
+plugs:
+  x11-plug:
+    interface: x11
 
 parts:
   opencv:
@@ -55,6 +81,7 @@ parts:
       - -DINSTALL_PYTHON_EXAMPLES=ON
       - -DBUILD_EXAMPLES=ON
       - -DCMAKE_INSTALL_PREFIX=/usr
+    after: [ desktop-gtk3, xwayland-kiosk-helper ]
     override-build: |
       snapcraftctl build
       mkdir -p $SNAPCRAFT_PART_INSTALL/bin
@@ -73,6 +100,7 @@ parts:
       - libxvidcore-dev
       - libx264-dev
       - libgtk2.0-dev
+      - libgtk-3-dev
       - libatlas-base-dev
       - gfortran
       - python2.7-dev
@@ -97,13 +125,13 @@ parts:
       - libexif12
       - libfontconfig1
       - libgdk-pixbuf2.0-0
+      - libgl1-mesa-dri
       - libgme0
       - libgomp1
       - libgphoto2-6
       - libgphoto2-port12
       - libgraphite2-3
       - libgsm1
-      - libgtk-3-0
       - libharfbuzz0b
       - libicu55
       - libilmbase12
