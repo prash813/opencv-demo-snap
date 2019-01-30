@@ -5,8 +5,8 @@ import os
 
 snap = os.environ["SNAP"]
 
-face_cascade = cv2.CascadeClassifier(snap + '/usr/share/OpenCV/haarcascades/haarcascade_frontalface_default.xml')
-eyes_cascade = cv2.CascadeClassifier(snap + '/usr/share/OpenCV/haarcascades/haarcascade_eye.xml')
+face_cascade = cv2.CascadeClassifier(snap + '/usr/share/opencv4/haarcascades/haarcascade_frontalface_default.xml')
+eyes_cascade = cv2.CascadeClassifier(snap + '/usr/share/opencv4/haarcascades/haarcascade_eye.xml')
 
 def detect(gray, frame):
   """ Input = greyscale image or frame from video stream
