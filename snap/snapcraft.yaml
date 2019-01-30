@@ -97,10 +97,6 @@ parts:
     override-build: |
       git clone https://github.com/opencv/opencv_contrib.git "$SNAPCRAFT_PART_BUILD"/contrib
       snapcraftctl build
-      mkdir -p $SNAPCRAFT_PART_INSTALL/bin
-      cp -av ../../../vidcapture.py $SNAPCRAFT_PART_INSTALL/bin/
-      cp -av ../../../facedetect.py $SNAPCRAFT_PART_INSTALL/bin/
-      cp -av ../../../eyedetect.py $SNAPCRAFT_PART_INSTALL/bin/
     build-packages:
       - libjpeg-dev
       - libtiff5-dev
@@ -224,6 +220,10 @@ parts:
       - python-numpy
       - to amd64: [ "libcrystalhd3:amd64", "libnuma1:amd64" ]
       - to i386: [ "libcrystalhd3:i386", "libnuma1:i386" ]
+
+  demos:
+    plugin: dump
+    source: demos
 
   facetracker:
     after: [ opencv ]
