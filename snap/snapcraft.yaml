@@ -75,14 +75,16 @@ parts:
   opencv:
     plugin: cmake
     source: https://github.com/opencv/opencv.git
-    source-tag: 3.0.0
+    source-tag: 4.0.1
     configflags:
       - -DINSTALL_C_EXAMPLES=ON
       - -DINSTALL_PYTHON_EXAMPLES=ON
       - -DBUILD_EXAMPLES=ON
       - -DCMAKE_INSTALL_PREFIX=/usr
+      - -DOPENCV_EXTRA_MODULES_PATH=contrib/modules
     after: [ desktop-gtk3, xwayland-kiosk-helper ]
     override-build: |
+      git clone https://github.com/opencv/opencv_contrib.git "$SNAPCRAFT_PART_BUILD"/contrib
       snapcraftctl build
       mkdir -p $SNAPCRAFT_PART_INSTALL/bin
       cp -av ../../../vidcapture.py $SNAPCRAFT_PART_INSTALL/bin/
