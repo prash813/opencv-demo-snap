@@ -255,3 +255,6 @@ parts:
     plugin: cmake
     source: https://github.com/alfonsosanchezbeato/Single_Face_Tracking_using_5_inbuilt_OpenCV_trackers.git
     source-tag: master
+    override-build: |
+      cp ${SNAPCRAFT_PROJECT_DIR}/facetracker.cpp ${SNAPCRAFT_PART_SRC}/
+      snapcraftctl build
