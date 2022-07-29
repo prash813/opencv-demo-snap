@@ -123,8 +123,6 @@ parts:
       - libv4l-dev
       - libxvidcore-dev
       - libx264-dev
-      - libgtk2.0-dev
-      - libgtk-3-dev
       - libatlas-base-dev
       - gfortran
       - python2.7-dev
@@ -175,9 +173,6 @@ parts:
       - libopenjp2-7
       - libopus0
       - liborc-0.4-0
-      - libpango-1.0-0
-      - libpangocairo-1.0-0
-      - libpangoft2-1.0-0
       - libpixman-1-0
       - libprotobuf-lite17
       - libpython2.7
@@ -258,3 +253,16 @@ parts:
     override-build: |
       cp ${SNAPCRAFT_PROJECT_DIR}/facetracker.cpp ${SNAPCRAFT_PART_SRC}/
       snapcraftctl build
+  cleanup:
+    after:
+      - facetracker
+    plugin: nil
+    build-snaps:
+      - core20
+      - gnome-3-38-2004
+    override-prime: |
+      set -eux
+      for snap in "core20" "gnome-3-38-2004"; do  # List all content-snaps and base snaps you're using here
+        cd "/snap/$snap/current" && find . -type f,l -exec rm -f "$SNAPCRAFT_PRIME/{}" \;
+      done  
+
