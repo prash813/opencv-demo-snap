@@ -1,6 +1,6 @@
 ## Snapcraft.yaml changes
 gnome-extension for core20 has been used so lot of libraries were not needed. 
-##changes in facetracker app
+## Changes in facetracker app
 facetracker is based on opencv tracking APIs. It looks like the tracking abstraction in OpenCV has changed a lot so original  sample code 
 from Alfonso's repo 
 
